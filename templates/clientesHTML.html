@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes HTML</title>
+</head>
+<body>
+    <input type="text" id="nome" placeholder="Nome" name="nome"/>
+    <input type="text" id="senha" placeholder="Senha" name="senha"/>
+    <input type="number" id="cargos_id" placeholder="cargos_id" name="cargos_id"/>
+    <button id="btnSend">Enviar</button>
+</body>
+<script>
+    function sendUser(){
+        var nome = document.getElementById('nome').value
+        var senha = document.getElementById('senha').value
+        var cargos_id = document.getElementById('cargos_id').value
+
+        var data = {
+            nome: nome,
+            senha: senha,
+            cargos_id: cargos_id
+        }
+
+        const response = fetch('http://localhost:3000/clientes', {
+            method: 'POST',
+            headers:{
+                'Content-Type' : 'Application/Json'
+            },
+            body: JSON.stringify(data)
+            
+        })
+    }
+
+    document.getElementById('btnSend').addEventListener('click', () => sendUser())
+</script>
+</html>
