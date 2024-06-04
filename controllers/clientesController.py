@@ -40,14 +40,14 @@ def clientesController():
         except Exception as e:
             return 'Não foi possivel atualizar o ususario {}'.format(str(e))
     elif request.method == "DELETE":
+        print(request.args.to_dict().get('id'))
         try:
-            data = request.get_json()
-            delete_cliente_id = data["id"]
-            cliente = Clientes.query.get(delete_cliente_id)
+            data = request.args.to_dict().get('id')
+            cliente = Clientes.query.get(data)
             if cliente is None:
                 return {'error':'Cliente nao encontrado'}, 404
             db.session.delete(cliente)
             db.session.commit()
             return 'cliente deletado com sucesso',202
         except Exception as e:
-            return 'Não foi possivel deletar o ususario'
+            return 'Não foi possivel deletar o ususario. ERRO'

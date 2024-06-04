@@ -4,6 +4,7 @@ from sqlalchemy.orm import relationship
 class Clientes(db.Model):
     def to_dict(self):
         return{
+            'id': self.id,
             'nome': self.nome,
             'senha':self.senha,
             'cargos_id': self.cargos_id
